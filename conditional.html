@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>conditional statements</title>
+  </head>
+  <body>
+    <script>
+      //if...
+      let age = 20;
+      if (age >= 18) {
+        console.log("You are an adult.");
+      } else {
+        console.log("You are a minor.");
+      }
+      //if.........else
+      let myage = 18;
+      if (myage >= 18) {
+        console.log("valid age for vote casting");
+      } else {
+        console.log("invalid age for vote casting");
+      }
+      let grade = "C";
+      switch (grade) {
+        case "A":
+          result = "First Division";
+          break;
+        case "B":
+          result = "Second Division";
+          break;
+        case "C":
+          result = "Third Division";
+          break;
+        default:
+          result = "Fail";
+      }
+      console.log(result);
+      //if....else if...else
+      let marks = 67;
+      if (marks >= 60) {
+        console.log("First Division");
+      } else if (marks <= 60 && marks >= 40) {
+        console.log("Second Division");
+      } else if (marks <= 40 && marks >= 30) {
+        console.log("Third Division");
+      } else {
+        console.log("Fail");
+      }
+    </script>
+  </body>
+</html>
