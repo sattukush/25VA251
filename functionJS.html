@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function in  Js</title>
+    
+</head>
+<body>
+    <script>
+        function demo(){
+            console.log("Hello JS")
+        }
+        demo();
+        function demo(text){
+            console.log("Hello" + text);
+        }
+        demo("React");
+
+        function cal(a,b=30){
+            console.log("addtion of two numbers is " + (a+b));
+        }
+        demo("React");
+        cal(12);
+        demo();
+        let msg=function(){
+            console.log("Hello Advanced JS ");
+        };
+        msg();
+        //sorted code for above function i.e.arrow functiom
+        let msg1 = () => console.log("Hello function as an arrow");
+        msg1();
+        //arrow functio using multiline
+        let add=(a,b)=>{
+            console.log("first number is "+a);
+            console.log("Second numbe is " +b);
+            console.log("addtion of two number is " + (a+b));
+        }
+        add(4,5);
+        (function(){
+            console.log("IIFE in JS");
+        })();
+        (()=>console.log("IIFE using arrow"))();
+
+        //callback function:-
+        //A JavaScript callback is a function passed as an argument to another function, which is then executed (or "called back") at a later point in time to complete a specific task.
+        function mul(callback){
+            var num1 = 10;
+            console.log("first Value" + num1);
+            var num2 = 20;
+            console.log("Second value "+num2);
+            var res=num1*num2;
+            callback(res);
+        } //callback function using settimeout API
+        function result(res){
+            console.log("Multiplication is " + res);
+        }
+        mul(result);
+        function msg2(){
+            console.log("Hello Call Back");
+            document.write("Hello");
+        }
+        function loading(){
+            document.write("Loading........")
+        };
+        setTimeout(msg2,2000);
+        loading();
+
+        // map filter and reduce
+        let num = [3,2,5,7];
+        let finalResult=num.map((n=>n*2));
+        console.log(finalResult);
+
+        let finalResult1=num.filter(n=>(n>3));
+        console.log(finalResult1);
+
+        let finalResult2=num.reduce((total,n)=>total+n);
+        console.log(finalResult2);
+
+        let promise = new Promise(function(resolve, reject) {
+    let age = 25;
+    if (age >= 18) {
+        resolve("You are eligible to vote");
+    } else {
+        reject("You are not eligible to vote");
+    }
+});
+
+        
+      
+        
+        
+    </script>
+    
+</body>
+</html>
