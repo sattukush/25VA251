@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon.in – Earth's Biggest Selection</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#131921;--blue:#232f3e;--orange:#ff9900;--light-orange:#febd69;
+  --red:#B12704;--green:#007600;--link:#007185;--hover-link:#C7511F;
+  --white:#fff;--bg:#EAEDED;--border:#ddd;--muted:#565959;
+}
+body{font-family:'Amazon Ember',Arial,sans-serif;background:var(--bg);color:#111}
+
+/* ── NAVBAR ── */
+.nav{background:var(--dark);color:#fff;position:sticky;top:0;z-index:999}
+.nav-top{display:flex;align-items:center;padding:8px 10px;gap:6px;max-width:1480px;margin:0 auto}
+.logo{flex-shrink:0;padding:6px 8px;border:2px solid transparent;border-radius:3px;cursor:pointer;text-decoration:none}
+.logo:hover{border-color:#fff}
+.logo-text{font-size:22px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1}
+.logo-text span{color:var(--orange)}
+.logo-text sub{font-size:9px;font-weight:400;vertical-align:baseline;color:#fff}
+.nav-loc{display:flex;flex-direction:column;padding:5px 8px;border:2px solid transparent;border-radius:3px;cursor:pointer;flex-shrink:0;font-size:12px}
+.nav-loc:hover{border-color:#fff}
+.nav-loc small{color:#ccc;font-size:10px}
+.nav-loc b{font-size:13px;white-space:nowrap}
+.nav-search{flex:1;display:flex;height:40px;border-radius:4px;overflow:hidden;min-width:0}
+.nav-search select{background:#f3f3f3;border:none;padding:0 6px;font-size:11px;cursor:pointer;min-width:46px;border-radius:4px 0 0 4px;color:#333}
+.nav-search input{flex:1;border:none;padding:0 10px;font-size:15px;outline:none;min-width:0}
+.nav-search button{background:var(--orange);border:none;padding:0 13px;cursor:pointer;border-radius:0 4px 4px 0;flex-shrink:0}
+.nav-search button:hover{background:#e68a00}
+.nav-search button svg{display:block}
+.nav-right{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.nav-btn{display:flex;flex-direction:column;padding:5px 9px;border:2px solid transparent;border-radius:3px;cursor:pointer;white-space:nowrap;font-size:12px}
+.nav-btn:hover{border-color:#fff}
+.nav-btn small{color:#ccc;font-size:10px}
+.nav-btn b{font-size:13px}
+.cart-btn{display:flex;align-items:flex-end;gap:3px;padding:5px 9px;border:2px solid transparent;border-radius:3px;cursor:pointer;position:relative}
+.cart-btn:hover{border-color:#fff}
+.cart-num{position:absolute;top:2px;left:26px;background:var(--orange);color:#111;font-size:15px;font-weight:900;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.cart-svg{width:38px;height:38px}
+.cart-lbl{font-size:13px;font-weight:700;color:#fff;align-self:flex-end}
+
+.nav-bot{background:var(--blue);color:#fff;font-size:13px}
+.nav-bot-inner{display:flex;align-items:center;max-width:1480px;margin:0 auto;gap:2px;padding:0 8px;overflow:hidden}
+.nb-item{padding:7px 10px;border:2px solid transparent;border-radius:3px;cursor:pointer;white-space:nowrap;font-weight:500}
+.nb-item:hover{border-color:#fff}
+.nb-item.bold{font-weight:700}
+
+/* ── HERO SLIDER ── */
+.hero{position:relative;overflow:hidden;background:#000;max-height:520px}
+.slider{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;height:500px;position:relative;overflow:hidden;flex-shrink:0}
+.slide img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.1) 55%,transparent 100%)}
+.slide-content{position:absolute;top:50%;left:6%;transform:translateY(-50%);color:#fff;max-width:420px}
+.slide-tag{background:var(--orange);color:#111;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;letter-spacing:.8px;text-transform:uppercase}
+.slide-title{font-size:44px;font-weight:900;line-height:1.05;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.slide-sub{font-size:16px;color:#ddd;margin-bottom:22px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.slide-btn{background:var(--orange);color:#111;border:none;padding:13px 28px;font-size:15px;font-weight:700;border-radius:4px;cursor:pointer;transition:.2s}
+.slide-btn:hover{background:#e68a00;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.hero-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:42px;height:84px;font-size:26px;cursor:pointer;z-index:10;border-radius:2px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);transition:.2s}
+.hero-arr:hover{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.hero-arr.l{left:0}
+.hero-arr.r{right:0}
+.dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.3s}
+.dot.on{background:var(--orange)}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1480px;margin:0 auto;padding:14px 10px}
+
+/* ── DEALS BAR ── */
+.deals-bar{background:#fff;padding:14px 18px;border-radius:4px;display:flex;align-items:center;gap:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.deals-bar h2{font-size:20px;color:var(--red);white-space:nowrap}
+.timer{display:flex;align-items:center;gap:4px}
+.tu{background:var(--dark);color:#fff;padding:4px 8px;border-radius:4px;font-size:18px;font-weight:700;min-width:36px;text-align:center}
+.ts{font-size:18px;font-weight:700;color:#555}
+.see-all{margin-left:auto;color:var(--link);font-size:13px;cursor:pointer;white-space:nowrap;text-decoration:none}
+.see-all:hover{color:var(--hover-link);text-decoration:underline}
+
+/* ── CATEGORY ROW ── */
+.cat-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+.cat-card{background:#fff;border-radius:6px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.1);transition:.2s}
+.cat-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.15);transform:translateY(-2px)}
+.cat-card img{width:100%;height:110px;object-fit:cover;display:block}
+.cat-card p{font-size:12px;font-weight:700;text-align:center;padding:7px 6px;color:#111}
+
+/* ── SECTION CARDS ── */
+.sec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.sec-card{background:#fff;padding:18px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.sec-card h2{font-size:20px;font-weight:700;margin-bottom:14px}
+.mini-g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini-it{cursor:pointer;text-align:center}
+.mini-it img{width:100%;height:95px;object-fit:cover;border-radius:4px;transition:.2s;display:block}
+.mini-it:hover img{transform:scale(1.04)}
+.mini-it p{font-size:11px;color:var(--muted);margin-top:4px}
+.see-more{color:var(--link);font-size:13px;cursor:pointer;margin-top:10px;display:block;text-decoration:none}
+.see-more:hover{text-decoration:underline;color:var(--hover-link)}
+.signin-btn{width:100%;padding:9px;background:var(--orange);border:none;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:10px;transition:.2s}
+.signin-btn:hover{background:#e68a00}
+
+/* ── PRODUCT ROW ── */
+.prod-sec{margin-bottom:14px}
+.prod-sec-head{background:#fff;padding:16px 18px 0;border-radius:4px 4px 0 0;display:flex;align-items:baseline;gap:16px}
+.prod-sec-head h2{font-size:22px;font-weight:700}
+.prod-sec-head a{font-size:13px;color:var(--link);cursor:pointer;margin-left:auto;text-decoration:none}
+.prod-sec-head a:hover{text-decoration:underline;color:var(--hover-link)}
+.scroll-wrap{position:relative}
+.prod-row{background:#fff;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;padding:14px 6px;scroll-behavior:smooth;box-shadow:0 1px 3px rgba(0,0,0,.1);border-radius:0 0 4px 4px}
+.prod-row::-webkit-scrollbar{display:none}
+.sc-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.92);border:1px solid #ddd;box-shadow:0 2px 8px rgba(0,0,0,.15);width:34px;height:72px;border-radius:4px;font-size:22px;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;transition:.2s}
+.sc-btn:hover{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.sc-btn.l{left:0}
+.sc-btn.r{right:0}
+
+/* ── PRODUCT CARD ── */
+.pc{min-width:210px;max-width:210px;padding:12px 10px;cursor:pointer;transition:.2s;flex-shrink:0;position:relative;border-radius:4px}
+.pc:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);background:#fafafa}
+.pc-badge{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 5px;border-radius:2px;z-index:1}
+.pc-img{width:100%;height:175px;display:flex;align-items:center;justify-content:center;background:#f7f7f7;border-radius:4px;overflow:hidden;margin-bottom:10px}
+.pc-img img{max-height:165px;max-width:100%;object-fit:contain;transition:.3s;display:block}
+.pc:hover .pc-img img{transform:scale(1.06)}
+.pc-title{font-size:13px;color:#333;line-height:1.4;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-brand{font-size:11px;color:var(--muted);margin-bottom:4px}
+.stars{color:var(--orange);font-size:12px}
+.rc{font-size:11px;color:var(--link);margin-left:3px}
+.price-blk{margin-top:5px}
+.pm{font-size:18px;font-weight:700}
+.ps{font-size:11px;vertical-align:top;line-height:2}
+.po{font-size:11px;color:#888;text-decoration:line-through;margin-left:5px}
+.pg{font-size:11px;color:var(--green)}
+.prime{display:flex;align-items:center;gap:4px;margin-top:3px}
+.pb{background:#00a8e1;color:#fff;font-size:9px;font-weight:700;padding:1px 4px;border-radius:2px;letter-spacing:1px}
+.pt{font-size:11px;color:var(--green)}
+.atc{width:100%;margin-top:9px;background:var(--orange);border:none;padding:7px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s}
+.atc:hover{background:#e68a00;color:#fff}
+
+/* ── DEALS GRID ── */
+.deals-wrap{background:#fff;border-radius:4px;padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.deals-head{display:flex;align-items:center;margin-bottom:14px}
+.deals-head h2{font-size:22px;font-weight:700}
+.d-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.d-card{border-radius:4px;overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:.2s}
+.d-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.d-card img{width:100%;height:195px;object-fit:contain;background:#f5f5f5;padding:10px;display:block}
+.d-info{padding:10px}
+.d-off{font-size:17px;font-weight:700;color:var(--red)}
+.d-title{font-size:12px;color:var(--muted);margin-top:3px}
+.d-bar-wrap{margin-top:7px}
+.d-bar-lbl{font-size:10px;color:#888}
+.d-bar{height:5px;background:#eee;border-radius:3px;margin-top:3px;overflow:hidden}
+.d-bar-fill{height:100%;background:var(--red);border-radius:3px}
+
+/* ── BANNER STRIP ── */
+.banner-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.banner-item{border-radius:4px;overflow:hidden;cursor:pointer;position:relative;height:220px}
+.banner-item img{width:100%;height:100%;object-fit:cover;transition:.3s;display:block}
+.banner-item:hover img{transform:scale(1.03)}
+.banner-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.55),transparent)}
+.banner-txt{position:absolute;bottom:20px;left:20px;color:#fff}
+.banner-txt h3{font-size:22px;font-weight:800;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.banner-txt p{font-size:12px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.banner-btn{position:absolute;bottom:20px;right:20px;background:var(--orange);border:none;padding:8px 16px;border-radius:4px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s}
+.banner-btn:hover{background:#e68a00}
+
+/* ── FOOTER ── */
+footer{background:var(--blue);color:#fff;margin-top:20px}
+.ft-top{background:#37475a;text-align:center;padding:13px;font-size:12px;cursor:pointer;transition:.2s}
+.ft-top:hover{background:#485769}
+.ft-links{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:32px 60px;max-width:1200px;margin:0 auto}
+.ft-col h3{font-size:14px;font-weight:700;margin-bottom:10px}
+.ft-col a{display:block;font-size:12px;color:#ccc;text-decoration:none;margin-bottom:7px;cursor:pointer}
+.ft-col a:hover{color:#fff;text-decoration:underline}
+.ft-bot{background:var(--dark);text-align:center;padding:18px;font-size:11px;color:#aaa}
+.ft-logo{font-size:24px;font-weight:900;margin-bottom:6px}
+.ft-logo span{color:var(--orange)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:22px;right:22px;background:#388e3c;color:#fff;padding:11px 18px;border-radius:4px;font-size:13px;font-weight:700;z-index:9999;opacity:0;transform:translateY(20px);transition:.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:960px){
+  .sec-grid,.cat-row{grid-template-columns:repeat(2,1fr)}
+  .d-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-links{grid-template-columns:repeat(2,1fr);padding:20px}
+  .banner-strip{grid-template-columns:1fr}
+  .slide-title{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-top">
+    <a class="logo" onclick="toast('Amazon.in Home')">
+      <div class="logo-text">amazon<span>.</span><sub>in</sub></div>
+    </a>
+    <div class="nav-loc">
+      <small>📍 Deliver to</small>
+      <b>New Delhi 110001</b>
+    </div>
+    <div class="nav-search">
+      <select>
+        <option>All</option><option>Electronics</option><option>Fashion</option>
+        <option>Books</option><option>Home</option><option>Grocery</option>
+        <option>Mobiles</option><option>Sports</option>
+      </select>
+      <input id="sq" type="text" placeholder="Search Amazon.in" onkeydown="if(event.key==='Enter')doSearch()"/>
+      <button onclick="doSearch()">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </div>
+    <div class="nav-right">
+      <div class="nav-btn" onclick="toast('Sign in page')">
+        <small>Hello, Sign in</small>
+        <b>Account &amp; Lists ▾</b>
+      </div>
+      <div class="nav-btn" onclick="toast('Your Orders')">
+        <small>Returns</small>
+        <b>&amp; Orders</b>
+      </div>
+      <div class="cart-btn" onclick="showCart()">
+        <svg class="cart-svg" viewBox="0 0 44 44" fill="none">
+          <path d="M6 8h4l5 22h18l4-14H13" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="36" r="2" fill="#fff"/>
+          <circle cx="32" cy="36" r="2" fill="#fff"/>
+        </svg>
+        <div class="cart-num" id="cartNum">0</div>
+        <span class="cart-lbl">Cart</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-bot">
+    <div class="nav-bot-inner">
+      <div class="nb-item bold">☰ All</div>
+      <div class="nb-item">Today's Deals</div>
+      <div class="nb-item">Customer Service</div>
+      <div class="nb-item">Registry</div>
+      <div class="nb-item">Gift Cards</div>
+      <div class="nb-item">Sell on Amazon</div>
+      <div class="nb-item">Electronics</div>
+      <div class="nb-item">Fashion</div>
+      <div class="nb-item">Amazon Pay</div>
+      <div class="nb-item">Prime</div>
+      <div class="nb-item">Grocery</div>
+      <div class="nb-item">Home &amp; Kitchen</div>
+      <div class="nb-item">Books</div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero">
+  <div class="slider" id="slider">
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=1400&q=85&fit=crop" alt="Electronics Sale" loading="eager"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-tag">🔥 Mega Sale</div>
+        <div class="slide-title">Electronics<br>Up to 80% Off</div>
+        <div class="slide-sub">Smartphones · Laptops · Earbuds</div>
+        <button class="slide-btn" onclick="toast('Exploring Electronics...')">Shop Now</button>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1400&q=85&fit=crop" alt="Fashion Sale" loading="lazy"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-tag">⚡ Flash Deal</div>
+        <div class="slide-title">New Season<br>Fashion Fest</div>
+        <div class="slide-sub">Trending styles at unbeatable prices</div>
+        <button class="slide-btn" onclick="toast('Exploring Fashion...')">Explore Now</button>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=85&fit=crop" alt="Home Sale" loading="lazy"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-tag">🏠 Home Special</div>
+        <div class="slide-title">Home &amp; Kitchen<br>Massive Deals</div>
+        <div class="slide-sub">Transform your living space today</div>
+        <button class="slide-btn" onclick="toast('Exploring Home...')">Shop Deals</button>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=1400&q=85&fit=crop" alt="Sports Sale" loading="lazy"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-tag">🏃 Sports Fest</div>
+        <div class="slide-title">Sports &amp; Fitness<br>Gear Up!</div>
+        <div class="slide-sub">Equipment · Shoes · Apparel</div>
+        <button class="slide-btn" onclick="toast('Exploring Sports...')">View Offers</button>
+      </div>
+    </div>
+
+  </div>
+  <button class="hero-arr l" onclick="slide(-1)">&#8249;</button>
+  <button class="hero-arr r" onclick="slide(1)">&#8250;</button>
+  <div class="dots" id="dots">
+    <div class="dot on" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+    <div class="dot" onclick="goSlide(3)"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="wrap">
+
+  <!-- DEALS TIMER -->
+  <div class="deals-bar">
+    <h2>⚡ Deal of the Day</h2>
+    <div class="timer">
+      <div class="tu" id="th">09</div><span class="ts">:</span>
+      <div class="tu" id="tm">45</div><span class="ts">:</span>
+      <div class="tu" id="ts">22</div>
+    </div>
+    <a class="see-all" onclick="toast('All deals loading...')">See all deals ›</a>
+  </div>
+
+  <!-- CATEGORY ROW with real images -->
+  <div class="cat-row">
+    <div class="cat-card" onclick="toast('Mobiles & Electronics')">
+      <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300&q=80&fit=crop" alt="Mobiles" loading="lazy"/>
+      <p>Mobiles</p>
+    </div>
+    <div class="cat-card" onclick="toast('Fashion')">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=300&q=80&fit=crop&crop=top" alt="Fashion" loading="lazy"/>
+      <p>Fashion</p>
+    </div>
+    <div class="cat-card" onclick="toast('Home & Kitchen')">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&q=80&fit=crop" alt="Home" loading="lazy"/>
+      <p>Home & Kitchen</p>
+    </div>
+    <div class="cat-card" onclick="toast('Books')">
+      <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80&fit=crop" alt="Books" loading="lazy"/>
+      <p>Books</p>
+    </div>
+    <div class="cat-card" onclick="toast('Sports & Fitness')">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&q=80&fit=crop" alt="Sports" loading="lazy"/>
+      <p>Sports</p>
+    </div>
+    <div class="cat-card" onclick="toast('Grocery')">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=80&fit=crop" alt="Grocery" loading="lazy"/>
+      <p>Grocery</p>
+    </div>
+  </div>
+
+  <!-- 4 SECTION CARDS -->
+  <div class="sec-grid">
+    <div class="sec-card">
+      <h2>Sign in for best deals</h2>
+      <button class="signin-btn" onclick="toast('Signing in securely...')">Sign in securely</button>
+      <div class="mini-g">
+        <div class="mini-it" onclick="toast('Today\'s Deals')">
+          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=200&q=80&fit=crop" alt="deals" loading="lazy"/>
+          <p>Today's Deals</p>
+        </div>
+        <div class="mini-it" onclick="toast('Electronics')">
+          <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=200&q=80&fit=crop" alt="electronics" loading="lazy"/>
+          <p>Electronics</p>
+        </div>
+        <div class="mini-it" onclick="toast('Men\'s Fashion')">
+          <img src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=200&q=80&fit=crop" alt="fashion" loading="lazy"/>
+          <p>Men's Fashion</p>
+        </div>
+        <div class="mini-it" onclick="toast('Home')">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=80&fit=crop" alt="home" loading="lazy"/>
+          <p>Home Decor</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-card">
+      <h2>Bestsellers in Electronics</h2>
+      <div class="mini-g">
+        <div class="mini-it" onclick="addCart('Smartphone')">
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80&fit=crop" alt="phone" loading="lazy"/>
+          <p>Smartphones</p>
+        </div>
+        <div class="mini-it" onclick="addCart('Laptop')">
+          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=200&q=80&fit=crop" alt="laptop" loading="lazy"/>
+          <p>Laptops</p>
+        </div>
+        <div class="mini-it" onclick="addCart('Earbuds')">
+          <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=200&q=80&fit=crop" alt="earbuds" loading="lazy"/>
+          <p>Earbuds</p>
+        </div>
+        <div class="mini-it" onclick="addCart('Smart Watch')">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&q=80&fit=crop" alt="watch" loading="lazy"/>
+          <p>Smartwatches</p>
+        </div>
+      </div>
+      <a class="see-more" onclick="toast('Opening Electronics...')">See more in Electronics ›</a>
+    </div>
+
+    <div class="sec-card">
+      <h2>Fashion Picks</h2>
+      <div class="mini-g">
+        <div class="mini-it" onclick="toast('Men\'s Fashion')">
+          <img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=200&q=80&fit=crop" alt="men" loading="lazy"/>
+          <p>Men</p>
+        </div>
+        <div class="mini-it" onclick="toast('Women\'s Fashion')">
+          <img src="https://tse4.mm.bing.net/th/id/OIF.AniogeclC2HEOn3zxNlAEA?pid=Api&P=0&h=180" alt="women" loading="lazy"/>
+          <p>Women</p>
+        </div>
+        <div class="mini-it" onclick="toast('Kids Fashion')">
+          <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=200&q=80&fit=crop" alt="kids" loading="lazy"/>
+          <p>Kids</p>
+        </div>
+        <div class="mini-it" onclick="toast('Shoes')">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80&fit=crop" alt="shoes" loading="lazy"/>
+          <p>Shoes</p>
+        </div>
+      </div>
+      <a class="see-more" onclick="toast('Opening Fashion...')">See more in Fashion ›</a>
+    </div>
+
+    <div class="sec-card">
+      <h2>Home &amp; Kitchen Picks</h2>
+      <div class="mini-g">
+        <div class="mini-it" onclick="toast('Kitchen')">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=80&fit=crop" alt="kitchen" loading="lazy"/>
+          <p>Kitchen</p>
+        </div>
+        <div class="mini-it" onclick="toast('Furniture')">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=80&fit=crop" alt="furniture" loading="lazy"/>
+          <p>Furniture</p>
+        </div>
+        <div class="mini-it" onclick="toast('Bedding')">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=200&q=80&fit=crop" alt="bedding" loading="lazy"/>
+          <p>Bedding</p>
+        </div>
+        <div class="mini-it" onclick="toast('Decor')">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=80&fit=crop" alt="decor" loading="lazy"/>
+          <p>Decor</p>
+        </div>
+      </div>
+      <a class="see-more" onclick="toast('Opening Home...')">See more in Home ›</a>
+    </div>
+  </div>
+
+  <!-- ELECTRONICS PRODUCTS -->
+  <div class="prod-sec">
+    <div class="prod-sec-head">
+      <h2>Top Picks in Electronics</h2>
+      <a onclick="toast('All Electronics')">See all ›</a>
+    </div>
+    <div class="scroll-wrap">
+      <button class="sc-btn l" onclick="scr('r1',-630)">‹</button>
+      <div class="prod-row" id="r1"></div>
+      <button class="sc-btn r" onclick="scr('r1',630)">›</button>
+    </div>
+  </div>
+
+  <!-- TODAY'S DEALS -->
+  <div class="deals-wrap">
+    <div class="deals-head">
+      <h2>🔥 Today's Deals</h2>
+      <a class="see-all" style="margin-left:auto" onclick="toast('All Deals')">See all deals ›</a>
+    </div>
+    <div class="d-grid" id="dg"></div>
+  </div>
+
+  <!-- BANNER STRIP -->
+  <div class="banner-strip">
+    <div class="banner-item" onclick="toast('Fashion Sale')">
+      <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80&fit=crop" alt="Fashion Banner" loading="lazy"/>
+      <div class="banner-overlay"></div>
+      <div class="banner-txt"><h3>Fashion Sale</h3><p>Up to 70% off on top brands</p></div>
+      <button class="banner-btn">Shop Now</button>
+    </div>
+    <div class="banner-item" onclick="toast('Home Décor Sale')">
+      <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&q=80&fit=crop" alt="Home Banner" loading="lazy"/>
+      <div class="banner-overlay"></div>
+      <div class="banner-txt"><h3>Home Décor</h3><p>Refresh your space from ₹299</p></div>
+      <button class="banner-btn">Explore</button>
+    </div>
+  </div>
+
+  <!-- FASHION PRODUCTS -->
+  <div class="prod-sec">
+    <div class="prod-sec-head">
+      <h2>Best Sellers in Fashion</h2>
+      <a onclick="toast('All Fashion')">See all ›</a>
+    </div>
+    <div class="scroll-wrap">
+      <button class="sc-btn l" onclick="scr('r2',-630)">‹</button>
+      <div class="prod-row" id="r2"></div>
+      <button class="sc-btn r" onclick="scr('r2',630)">›</button>
+    </div>
+  </div>
+
+  <!-- HOME PRODUCTS -->
+  <div class="prod-sec">
+    <div class="prod-sec-head">
+      <h2>Trending in Home &amp; Kitchen</h2>
+      <a onclick="toast('All Home')">See all ›</a>
+    </div>
+    <div class="scroll-wrap">
+      <button class="sc-btn l" onclick="scr('r3',-630)">‹</button>
+      <div class="prod-row" id="r3"></div>
+      <button class="sc-btn r" onclick="scr('r3',630)">›</button>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</div>
+  <div class="ft-links">
+    <div class="ft-col">
+      <h3>Get to Know Us</h3>
+      <a>About Amazon</a><a>Careers</a><a>Press Releases</a><a>Amazon Cares</a><a>Gift a Smile</a>
+    </div>
+    <div class="ft-col">
+      <h3>Make Money with Us</h3>
+      <a>Sell on Amazon</a><a>Amazon Global Selling</a><a>Become an Affiliate</a><a>Fulfilment by Amazon</a>
+    </div>
+    <div class="ft-col">
+      <h3>Amazon Payment Products</h3>
+      <a>Amazon Pay</a><a>Amazon Pay UPI</a><a>Amazon Pay Later</a><a>EMI Network</a>
+    </div>
+    <div class="ft-col">
+      <h3>Let Us Help You</h3>
+      <a>Your Account</a><a>Returns Centre</a><a>100% Purchase Protection</a><a>Amazon App Download</a><a>Help</a>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-logo">amazon<span>.</span>in</div>
+    <p>© 1996–2025, Amazon.com, Inc. or its affiliates. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toastEl"></div>
+
+<script>
+// ── REAL PRODUCT DATA with Amazon CDN images ──────────────────
+const electronics = [
+  {
+    title:'Apple iPhone 15 128GB Black',brand:'Apple',
+    img:'https://m.media-amazon.com/images/I/61bK6PMOC3L._AC_SX522_.jpg',
+    price:59990,old:79900,rating:4.5,reviews:12847,badge:'25% off'
+  },
+  {
+    title:'Samsung Galaxy S24 Ultra 5G 256GB',brand:'Samsung',
+    img:'https://m.media-amazon.com/images/I/71Sa3dqTqzL._AC_SX522_.jpg',
+    price:99999,old:134999,rating:4.4,reviews:8234,badge:'26% off'
+  },
+  {
+    title:'boAt Rockerz 450 Bluetooth Headphone',brand:'boAt',
+    img:'https://images-na.ssl-images-amazon.com/images/I/61ihz46SLOL._SL1500_.jpg',
+    price:899,old:2990,rating:4.1,reviews:234567,badge:'70% off'
+  },
+  {
+    title:'Fire-Boltt Phoenix Ultra Smart Watch',brand:'Fire-Boltt',
+    img:'https://m.media-amazon.com/images/I/61nzPMNY8zL._AC_SX522_.jpg',
+    price:1299,old:5999,rating:3.9,reviews:156789,badge:'78% off'
+  },
+  {
+    title:'OnePlus Nord CE 3 Lite 5G 128GB',brand:'OnePlus',
+    img:'https://tse1.mm.bing.net/th/id/OIP.bkk-Z1XA9XDGWS9ZZ2Eq_gHaHa?pid=Api&P=0&h=180',
+    price:19999,old:24999,rating:4.2,reviews:45321,badge:'20% off'
+  },
+  {
+    title:'realme Buds T300 True Wireless Earbuds',brand:'realme',
+    img:'https://tse1.mm.bing.net/th/id/OIP.Fu8UST6BR4_jnx_AGYQhFQAAAA?pid=Api&P=0&h=180',
+    price:1999,old:3999,rating:4.3,reviews:34521,badge:'50% off'
+  },
+  {
+    title:'Redmi 12C 4GB RAM 64GB ROM Royal Blue',brand:'Redmi',
+    img:'https://tse4.mm.bing.net/th/id/OIP.DEWRgE7-7ewxyU6Afjc3qwHaJl?pid=Api&P=0&h=180',
+    price:7999,old:10999,rating:4.0,reviews:78234,badge:'27% off'
+  },
+  {
+    title:'Logitech MK215 Wireless Keyboard & Mouse Combo',brand:'Logitech',
+    img:'https://tse2.mm.bing.net/th/id/OIP.UZ0-m9n0jK6o5XfNdfaUMAHaHa?pid=Api&P=0&h=180',
+    price:1095,old:2495,rating:4.2,reviews:45678,badge:'56% off'
+  },
+];
+
+const fashion = [
+  {
+    title:"Allen Solly Men's Regular Fit Polo T-Shirt",brand:'Allen Solly',
+    img:'https://tse2.mm.bing.net/th/id/OIP.ZpGjS9XnBQjVjwjgRuKd1wHaKA?pid=Api&P=0&h=180',
+    price:699,old:1299,rating:4.1,reviews:23456,badge:'46% off'
+  },
+  {
+    title:"Levi's Men's 511 Slim Fit Jeans",brand:"Levi's",
+    img:'https://tse4.mm.bing.net/th/id/OIP.le_G8cxeBVrXXT7px-0jzwHaGq?pid=Api&P=0&h=180',
+    price:1799,old:3499,rating:4.4,reviews:56789,badge:'49% off'
+  },
+  {
+    title:'Nike Air Max 270 Running Shoes Black',brand:'Nike',
+    img:'https://tse1.mm.bing.net/th/id/OIP.Ok7McU34XrQ57BLxeiz4UgHaHa?pid=Api&P=0&h=180',
+    price:8995,old:11995,rating:4.5,reviews:34567,badge:'25% off'
+  },
+  {
+    title:"Van Heusen Women's Slim Fit Blazer",brand:'Van Heusen',
+    img:'https://m.media-amazon.com/images/I/31mGRqkT79L._SY445_SX342_.jpg',
+    price:1499,old:3499,rating:4.3,reviews:12345,badge:'57% off'
+  },
+  {
+    title:'Peter England Men Formal Shirt White',brand:'Peter England',
+    img:'https://tse1.mm.bing.net/th/id/OIP.4Icc3LUzxvRXLipoShMTcQHaJ4?pid=Api&P=0&h=180',
+    price:899,old:1799,rating:4.2,reviews:23456,badge:'50% off'
+  },
+  {
+    title:'Fossil Gen 6 Hybrid Smartwatch Brown',brand:'Fossil',
+    img:'https://tse4.mm.bing.net/th/id/OIP.oIZNsojUjGu20RgB1f_bQgHaEK?pid=Api&P=0&h=180',
+    price:6995,old:12995,rating:4.6,reviews:4567,badge:'46% off'
+  },
+  {
+    title:'Puma Unisex School Backpack 28L Black',brand:'Puma',
+    img:'https://tse1.mm.bing.net/th/id/OIP.QG_9ngs9bAKxQky9V_ZwBgAAAA?pid=Api&P=0&h=180',
+    price:1199,old:2299,rating:4.1,reviews:18765,badge:'48% off'
+  },
+  {
+    title:"Adidas Men's Ultraboost 22 Running Shoe",brand:'Adidas',
+    img:'https://m.media-amazon.com/images/I/61aXSkFNTUL._AC_SL1500_.jpg',
+    price:10999,old:17999,rating:4.5,reviews:9876,badge:'39% off'
+  },
+];
+
+const home = [
+  {
+    title:'Prestige Iris 750W Mixer Grinder 3 Jars',brand:'Prestige',
+    img:'https://tse2.mm.bing.net/th/id/OIP.5imDCob-70RUhibCIOYWbgHaHa?pid=Api&P=0&h=180',
+    price:1849,old:3795,rating:4.3,reviews:45678,badge:'51% off'
+  },
+  {
+    title:'Milton Thermosteel Flip Lid Flask 500ml',brand:'Milton',
+    img:'https://images-na.ssl-images-amazon.com/images/I/71gRVwNdq-L.jpg',
+    price:399,old:799,rating:4.4,reviews:123456,badge:'50% off'
+  },
+  {
+    title:'Pigeon By Stovekraft Induction Base Non Stick Kadhai',brand:'Pigeon',
+    img:'https://tse3.mm.bing.net/th/id/OIP.SOxV19la8-2zI6KeRgkdIwHaH4?pid=Api&P=0&h=180',
+    price:699,old:1499,rating:4.2,reviews:67890,badge:'53% off'
+  },
+  {
+    title:'AmazonBasics Microfibre Reversible Comforter',brand:'Amazon Basics',
+    img:'https://images-na.ssl-images-amazon.com/images/I/918fC7DUL9L._SL1500_.jpg',
+    price:899,old:2499,rating:4.1,reviews:34567,badge:'64% off'
+  },
+  {
+    title:'Havells Carry Go 1500W Immersion Rod',brand:'Havells',
+    img:'https://tse4.mm.bing.net/th/id/OIP.0RhH-9BWen9IgvmjAUWGfQAAAA?pid=Api&P=0&h=180',
+    price:449,old:899,rating:4.0,reviews:56789,badge:'50% off'
+  },
+  {
+    title:'Lifelong 750W Electric Iron 2-Year Warranty',brand:'Lifelong',
+    img:'https://m.media-amazon.com/images/I/61K3ZM4TuXL._SL1500_.jpg',
+    price:449,old:899,rating:4.1,reviews:78234,badge:'50% off'
+  },
+  {
+    title:'SOLIMO 144TC Cotton King Size Bedsheet',brand:'SOLIMO',
+    img:'https://tse1.mm.bing.net/th/id/OIP.CxmIsmU-BmSS5GSMQ-9s5QHaHa?pid=Api&P=0&h=180',
+    price:499,old:999,rating:4.2,reviews:45678,badge:'50% off'
+  },
+  {
+    title:'Kuber Industries Bathroom Organizer Set 6-Piece',brand:'Kuber',
+    img:'https://m.media-amazon.com/images/I/71Sa3dqTqzL._AC_SX522_.jpg',
+    price:349,old:699,rating:4.3,reviews:23456,badge:'50% off'
+  },
+];
+
+const dealsData = [
+  {
+    title:'Fire TV Stick 4K Ultra HD | Alexa Voice Remote',
+    off:'47% off', pct:78,
+    img:'https://tse2.mm.bing.net/th/id/OIP.j2z1FJM2YKXWFNZyyh-eagAAAA?pid=Api&P=0&h=180'
+  },
+  {
+    title:'Echo Dot (5th Gen) Smart Speaker with Alexa',
+    off:'55% off', pct:62,
+    img:'https://tse3.mm.bing.net/th/id/OIP.MQrvhJRW5in-l77FJ6JcdwHaHa?pid=Api&P=0&h=180'
+  },
+  {
+    title:'Sony Bravia 55" 4K Ultra HD Android TV',
+    off:'30% off', pct:45,
+    img:'https://tse1.mm.bing.net/th/id/OIP.i9C1ZWCGsleUT8izT7nWCQHaFj?pid=Api&P=0&h=180'
+  },
+  {
+    title:'boAt Aavante Bar 1160 Soundbar with Dolby',
+    off:'53% off', pct:88,
+    img:'https://tse3.mm.bing.net/th/id/OIP.H8R8g1zy6DrR9Mg40FUI4AHaEi?pid=Api&P=0&h=180'
+  },
+];
+
+// ── RENDER ───────────────────────────────────────────────────
+function stars(r){
+  let s='';
+  for(let i=1;i<=5;i++) s+=i<=Math.floor(r)?'★':(r%1>=.5&&i===Math.ceil(r)?'½':'☆');
+  return s;
+}
+
+function mkCard(p,row){
+  const disc=Math.round((p.old-p.price)/p.old*100);
+  const d=document.createElement('div');
+  d.className='pc';
+  d.innerHTML=`
+    ${p.badge?`<div class="pc-badge">${p.badge}</div>`:''}
+    <div class="pc-img">
+      <img src="${p.img}" alt="${p.title}" loading="lazy"
+        onerror="this.onerror=null;this.src='https://via.placeholder.com/200x180/f7f7f7/999?text=Product'"/>
+    </div>
+    <div class="pc-brand">${p.brand}</div>
+    <div class="pc-title">${p.title}</div>
+    <div><span class="stars">${stars(p.rating)}</span><span class="rc">${p.reviews.toLocaleString()}</span></div>
+    <div class="price-blk">
+      <span class="pm"><span class="ps">₹</span>${p.price.toLocaleString()}</span>
+      <span class="po">₹${p.old.toLocaleString()}</span>
+      <div class="pg">Save ${disc}% (₹${(p.old-p.price).toLocaleString()})</div>
+    </div>
+    <div class="prime"><span class="pb">prime</span><span class="pt">FREE delivery</span></div>
+    <button class="atc" onclick="addCart('${p.title.replace(/'/g,"\\'")}')">Add to Cart</button>
+  `;
+  document.getElementById(row).appendChild(d);
+}
+
+function mkDeal(d){
+  const el=document.createElement('div');
+  el.className='d-card';
+  el.innerHTML=`
+    <img src="${d.img}" alt="${d.title}" loading="lazy"
+      onerror="this.onerror=null;this.src='https://via.placeholder.com/200x195/f5f5f5/999?text=Deal'"/>
+    <div class="d-info">
+      <div class="d-off">${d.off}</div>
+      <div class="d-title">${d.title}</div>
+      <div class="d-bar-wrap">
+        <div class="d-bar-lbl">${d.pct}% claimed</div>
+        <div class="d-bar"><div class="d-bar-fill" style="width:${d.pct}%"></div></div>
+      </div>
+      <button onclick="addCart('${d.title.replace(/'/g,"\\'")}');event.stopPropagation()" style="width:100%;margin-top:8px;background:var(--orange);border:none;padding:7px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer" onmouseover="this.style.background='#e68a00'" onmouseout="this.style.background='var(--orange)'">Add to Cart</button>
+    </div>
+  `;
+  document.getElementById('dg').appendChild(el);
+}
+
+electronics.forEach(p=>mkCard(p,'r1'));
+fashion.forEach(p=>mkCard(p,'r2'));
+home.forEach(p=>mkCard(p,'r3'));
+dealsData.forEach(d=>mkDeal(d));
+
+// ── CART ────────────────────────────────────────────────────
+let cart=0;
+function addCart(n){
+  cart++;
+  document.getElementById('cartNum').textContent=cart;
+  toast(`✔ "${n.substring(0,32)}..." added to cart`);
+}
+function showCart(){toast(`🛒 You have ${cart} item(s) in your cart`)}
+
+// ── TOAST ───────────────────────────────────────────────────
+let tid;
+function toast(msg){
+  const el=document.getElementById('toastEl');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(tid);tid=setTimeout(()=>el.classList.remove('show'),2500);
+}
+
+// ── SEARCH ──────────────────────────────────────────────────
+function doSearch(){
+  const q=document.getElementById('sq').value.trim();
+  if(q)toast(`🔍 Searching for "${q}"...`);
+  else toast('Please enter a search term');
+}
+
+// ── HERO SLIDER ─────────────────────────────────────────────
+let cur=0,total=4;
+function goSlide(n){
+  cur=n;
+  document.getElementById('slider').style.transform=`translateX(-${cur*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===cur));
+}
+function slide(dir){goSlide((cur+dir+total)%total)}
+setInterval(()=>slide(1),5000);
+
+// ── SCROLL ROWS ─────────────────────────────────────────────
+function scr(id,px){document.getElementById(id).scrollBy({left:px,behavior:'smooth'})}
+
+// ── COUNTDOWN ───────────────────────────────────────────────
+let secs=9*3600+45*60+22;
+setInterval(()=>{
+  secs--;if(secs<0)secs=12*3600;
+  const h=Math.floor(secs/3600),m=Math.floor(secs%3600/60),s=secs%60;
+  document.getElementById('th').textContent=String(h).padStart(2,'0');
+  document.getElementById('tm').textContent=String(m).padStart(2,'0');
+  document.getElementById('ts').textContent=String(s).padStart(2,'0');
+},1000);
+</script>
+</body>
+</html>
